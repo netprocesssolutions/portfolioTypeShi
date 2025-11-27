@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}Jordan Taylor | Process Engineer{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="hero-gradient"></div>
+        <div class="hero-grid"></div>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text animate-fade-up">
+                <span class="hero-greeting">Hello, I'm</span>
+                <h1 class="hero-name">{{ profile.name }}</h1>
+                <p class="hero-title">{{ profile.title }}</p>
+                <p class="hero-tagline">{{ profile.tagline }}</p>
+                <div class="hero-cta">
+                    <a href="{{ url_for('resume') }}" class="btn btn-primary">View Full Resume</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual animate-fade-up">
+                <div class="hero-card">
+                    <div class="hero-avatar">
+                        <span>JT</span>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">Live<br>Applications</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">3+</span>
+                            <span class="stat-label">Engineering<br>Industries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">2+</span>
+                            <span class="stat-label">Years<br>Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about">
+    <div class="container">
+        <div class="about-content animate-on-scroll">
+            <h2>About Me</h2>
+            <p class="about-text">{{ profile.summary }}</p>
+            <div class="about-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <h3>Data-Driven</h3>
+                    <p>Building analytics pipelines and dashboards to transform raw data into actionable insights.</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3>Process-Focused</h3>
+                    <p>Optimizing manufacturing operations through systematic analysis and continuous improvement.</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Cross-Functional Leader</h3>
+                    <p>Coordinating teams across departments and shifts to achieve operational excellence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Preview -->
+<section class="experience-preview">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2>Recent Experience</h2>
+            <a href="{{ url_for('resume') }}" class="view-all">View Full Resume →</a>
+        </div>
+        
+        <div class="experience-timeline">
+            {% for job in experience %}
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-marker {% if job.current %}current{% endif %}"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <div class="timeline-info">
+                            <h3>{{ job.title }}</h3>
+                            <span class="company">{{ job.company }}</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="dates">{{ job.dates }}</span>
+                            <span class="location">{{ job.location }}</span>
+                        </div>
+                    </div>
+                    <ul class="timeline-highlights">
+                        {% for highlight in job.highlights[:2] %}
+                        <li>{{ highlight }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills-section">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2>Technical Skills</h2>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skills-column animate-on-scroll">
+                <h3>Programming & Tools</h3>
+                <div class="skill-bars">
+                    {% for skill in skills.technical %}
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">{{ skill.name }}</span>
+                            <span class="skill-level">{{ skill.level }}%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: {{ skill.level }}%"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="skills-column animate-on-scroll">
+                <h3>Engineering & Process</h3>
+                <div class="skill-tags">
+                    {% for skill in skills.engineering %}
+                    <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+                
+                <h3>Certifications</h3>
+                <div class="certifications">
+                    {% for cert in skills.certifications %}
+                    <div class="cert-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <span>{{ cert }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section class="education-section">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2>Education</h2>
+        </div>
+        
+        {% for edu in education %}
+        <div class="education-card animate-on-scroll">
+            <div class="education-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+            </div>
+            <div class="education-content">
+                <h3>{{ edu.degree }}</h3>
+                <p class="institution">{{ edu.institution }}</p>
+                <p class="graduation">{{ edu.graduation }} | GPA: {{ edu.gpa }}</p>
+                <div class="education-honors">
+                    {% for honor in edu.honors %}
+                    <span class="honor-badge">{{ honor }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Let's Work Together</h2>
+            <p>Interested in discussing process improvement, data analytics, or potential opportunities?</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">Get In Touch</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
