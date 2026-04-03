@@ -1,0 +1,63 @@
+{% extends "tracker/base_tracker.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="page-header">
+        <h1>Strategic Objectives</h1>
+        <p class="page-subtitle">Shaw Plant 4 Coating — Action Item Tracker</p>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+        <div class="stat-card glass-card">
+            <div class="stat-value">{{ total_items }}</div>
+            <div class="stat-label">Total Items</div>
+        </div>
+        <div class="stat-card glass-card">
+            <div class="stat-value stat-open">{{ open_items }}</div>
+            <div class="stat-label">Open</div>
+        </div>
+        <div class="stat-card glass-card">
+            <div class="stat-value stat-completed">{{ completed_items }}</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card glass-card">
+            <div class="stat-value stat-critical">{{ critical_items }}</div>
+            <div class="stat-label">Critical</div>
+        </div>
+    </div>
+
+    <!-- Objectives Grid -->
+    <div class="objectives-grid">
+        {% for obj in objectives %}
+        <a href="{{ url_for('tracker.objective_detail', obj_id=obj.id) }}" class="objective-card glass-card">
+            <div class="objective-number">{{ obj.number }}</div>
+            <h3 class="objective-name">{{ obj.name }}</h3>
+            {% if obj.description %}
+            <p class="objective-desc">{{ obj.description }}</p>
+            {% endif %}
+            <div class="objective-stats">
+                <span class="obj-stat">
+                    <span class="obj-stat-val">{{ obj.action_item_count() }}</span>
+                    <span class="obj-stat-label">Total</span>
+                </span>
+                <span class="obj-stat">
+                    <span class="obj-stat-val stat-open">{{ obj.open_count() }}</span>
+                    <span class="obj-stat-label">Open</span>
+                </span>
+                <span class="obj-stat">
+                    <span class="obj-stat-val stat-completed">{{ obj.completed_count() }}</span>
+                    <span class="obj-stat-label">Done</span>
+                </span>
+            </div>
+            {% set total = obj.action_item_count() %}
+            {% set done = obj.completed_count() %}
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ (done / total * 100) if total > 0 else 0 }}%"></div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

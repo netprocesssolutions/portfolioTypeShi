@@ -1,0 +1,68 @@
+{% extends "tracker/base_tracker.html" %}
+{% block title %}Activity Feed{% endblock %}
+
+{% block content %}
+<div class="feed-page">
+    <div class="page-header">
+        <h1>Activity Feed</h1>
+        <p class="page-subtitle">Recent comments, updates, and activity</p>
+    </div>
+
+    <div class="feed-layout">
+        <!-- Recent Activity -->
+        <div class="feed-main">
+            {% if comments %}
+            {% for c in comments %}
+            <div class="feed-item glass-card">
+                <div class="feed-item-header">
+                    <span class="feed-avatar">{{ c.user.username[0]|upper }}</span>
+                    <div class="feed-item-meta">
+                        <span class="feed-author">{{ c.user.username }}</span>
+                        <span class="comment-type-badge">{{ c.comment_type }}</span>
+                        <span class="feed-time">{{ c.created_at.strftime('%b %d, %Y at %H:%M') }}</span>
+                    </div>
+                </div>
+                <p class="feed-body">{{ c.body|wikilinks }}</p>
+                <div class="feed-context">
+                    {% if c.objective %}
+                    <a href="{{ url_for('tracker.objective_detail', obj_id=c.objective.id) }}" class="feed-context-link">
+                        &#9670; {{ c.objective.number }}. {{ c.objective.name }}
+                    </a>
+                    {% elif c.project %}
+                    <a href="{{ url_for('tracker.objective_detail', obj_id=c.project.objective_id) }}" class="feed-context-link">
+                        &#128194; {{ c.project.name }} ({{ c.project.objective.name }})
+                    </a>
+                    {% elif c.action_item %}
+                    <a href="{{ url_for('tracker.objective_detail', obj_id=c.action_item.project.objective_id) }}" class="feed-context-link">
+                        &#9745; {{ c.action_item.title }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="empty-state-card glass-card">
+                <h3>No activity yet</h3>
+                <p>Comments and updates will appear here as you and your team collaborate.</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Recent Action Items Sidebar -->
+        <div class="feed-sidebar">
+            <div class="glass-card">
+                <h3>Recently Updated</h3>
+                {% for item in recent_items %}
+                <div class="sidebar-item">
+                    <span class="status-dot status-{{ item.status }}"></span>
+                    <div>
+                        <a href="{{ url_for('tracker.objective_detail', obj_id=item.project.objective_id) }}" class="sidebar-item-title">{{ item.title }}</a>
+                        <span class="sidebar-item-meta">{{ item.project.name }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

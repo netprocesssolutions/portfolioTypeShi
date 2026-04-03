@@ -1,0 +1,37 @@
+{% extends "tracker/base_tracker.html" %}
+{% block title %}Wiki{% endblock %}
+
+{% block content %}
+<div class="wiki-page">
+    <div class="page-header">
+        <div class="page-header-row">
+            <div>
+                <h1>Wiki</h1>
+                <p class="page-subtitle">Definitions, procedures, and reference material</p>
+            </div>
+            <a href="{{ url_for('tracker.new_wiki_page') }}" class="btn btn-primary">+ New Page</a>
+        </div>
+    </div>
+
+    {% if pages %}
+    <div class="wiki-grid">
+        {% for page in pages %}
+        <a href="{{ url_for('tracker.wiki_page', slug=page.slug) }}" class="wiki-card glass-card">
+            <h3>{{ page.title }}</h3>
+            <p class="wiki-preview">{{ page.body[:120] }}{% if page.body|length > 120 %}...{% endif %}</p>
+            <div class="wiki-meta">
+                <span>By {{ page.created_by.username }}</span>
+                <span>{{ page.updated_at.strftime('%b %d, %Y') }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state-card glass-card">
+        <h3>No wiki pages yet</h3>
+        <p>Create pages for definitions, procedures, and reference material. Link to them from anywhere using [[Page Name]] syntax.</p>
+        <a href="{{ url_for('tracker.new_wiki_page') }}" class="btn btn-primary">Create First Page</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
