@@ -1,15 +1,88 @@
 """
-Jordan Taylor - Personal Portfolio Website
-A professional CV and resume website.
+Jordan Taylor - Personal Portfolio Website & Action Item Tracker
 """
 
 from flask import Flask, render_template, request, redirect, url_for
+from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
+from models import db, bcrypt, User
 import os
 
-app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24))
 
-# Personal Information
+def create_app():
+    app = Flask(__name__)
+    app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24))
+
+    # Database configuration
+    database_url = os.environ.get('DATABASE_URL', 'sqlite:///tracker.db')
+    # Railway PostgreSQL uses postgres:// but SQLAlchemy needs postgresql://
+    if database_url.startswith('postgres://'):
+        database_url = database_url.replace('postgres://', 'postgresql://', 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    # Initialize extensions
+    db.init_app(app)
+    bcrypt.init_app(app)
+    csrf = CSRFProtect(app)
+
+    # Flask-Login setup
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'tracker.login'
+    login_manager.login_message_category = 'info'
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
+    # Register tracker blueprint
+    from tracker import tracker_bp
+    app.register_blueprint(tracker_bp, url_prefix='/tracker')
+
+    # Create tables on first request
+    with app.app_context():
+        db.create_all()
+
+    # ---- Portfolio Routes (unchanged) ----
+
+    @app.route('/')
+    def home():
+        return render_template('index.html',
+                             profile=PROFILE,
+                             education=EDUCATION,
+                             experience=EXPERIENCE[:2],
+                             skills=SKILLS)
+
+    @app.route('/resume')
+    def resume():
+        return render_template('resume.html',
+                             profile=PROFILE,
+                             education=EDUCATION,
+                             experience=EXPERIENCE,
+                             leadership=LEADERSHIP,
+                             skills=SKILLS)
+
+    @app.route('/projects')
+    def projects():
+        return render_template('projects.html',
+                             profile=PROFILE,
+                             projects=PROJECTS)
+
+    @app.route('/contact')
+    def contact():
+        return render_template('contact.html',
+                             profile=PROFILE)
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html', profile=PROFILE), 404
+
+    return app
+
+
+# ---- Portfolio Data ----
+
 PROFILE = {
     'name': 'Jordan Taylor',
     'title': 'Process Engineer',
@@ -18,11 +91,10 @@ PROFILE = {
     'email': 'me@jordantaylor.online',
     'phone': '865-454-9470',
     'summary': 'Chemical Process Engineer with hands-on manufacturing experience across automotive, plastics, and flooring industries. Passionate about leveraging data analytics, process optimization, and cross-functional collaboration to drive measurable improvements in quality, efficiency, and operational excellence.',
-    'linkedin': 'https://linkedin.com/in/jordantaylor',  # Update with actual URL
-    'github': 'https://github.com/jordantaylor',  # Update with actual URL
+    'linkedin': 'https://linkedin.com/in/jordantaylor',
+    'github': 'https://github.com/jordantaylor',
 }
 
-# Education
 EDUCATION = [
     {
         'institution': 'University of Tennessee, Chattanooga',
@@ -48,7 +120,6 @@ EDUCATION = [
     }
 ]
 
-# Work Experience
 EXPERIENCE = [
     {
         'company': 'Shaw Flooring',
@@ -103,7 +174,6 @@ EXPERIENCE = [
     }
 ]
 
-# Leadership Experience
 LEADERSHIP = [
     {
         'role': 'Team Captain',
@@ -137,7 +207,6 @@ LEADERSHIP = [
     }
 ]
 
-# Skills
 SKILLS = {
     'technical': [
         {'name': 'VBA / Excel Automation', 'level': 100},
@@ -151,7 +220,6 @@ SKILLS = {
         {'name': 'CHEMCAD', 'level': 70},
         {'name': 'C++ (Arduino)', 'level': 60},
         {'name': 'Spanish', 'level': 60},
-
     ],
     'engineering': [
         'Process Optimization',
@@ -169,7 +237,6 @@ SKILLS = {
     ]
 }
 
-# Projects
 PROJECTS = [
     {
         'id': 'analytics-pipeline',
@@ -269,43 +336,7 @@ PROJECTS = [
     }
 ]
 
-
-@app.route('/')
-def home():
-    return render_template('index.html',
-                         profile=PROFILE,
-                         education=EDUCATION,
-                         experience=EXPERIENCE[:2],  # Show recent 2
-                         skills=SKILLS)
-
-
-@app.route('/resume')
-def resume():
-    return render_template('resume.html',
-                         profile=PROFILE,
-                         education=EDUCATION,
-                         experience=EXPERIENCE,
-                         leadership=LEADERSHIP,
-                         skills=SKILLS)
-
-
-@app.route('/projects')
-def projects():
-    return render_template('projects.html',
-                         profile=PROFILE,
-                         projects=PROJECTS)
-
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html',
-                         profile=PROFILE)
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html', profile=PROFILE), 404
-
+app = create_app()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

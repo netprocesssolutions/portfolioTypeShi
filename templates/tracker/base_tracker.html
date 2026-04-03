@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tracker{% endblock %} | Shaw P4 Action Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tracker.css') }}">
+</head>
+<body>
+    <nav class="tracker-nav">
+        <div class="nav-brand">
+            <a href="{{ url_for('tracker.dashboard') }}">
+                <span class="brand-icon">&#9670;</span>
+                <span class="brand-text">P4 Tracker</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('tracker.dashboard') }}" class="{% if request.endpoint == 'tracker.dashboard' %}active{% endif %}">Dashboard</a>
+            <a href="{{ url_for('tracker.activity_feed') }}" class="{% if request.endpoint == 'tracker.feed' %}active{% endif %}">Feed</a>
+            <a href="{{ url_for('tracker.wiki_index') }}" class="{% if 'wiki' in request.endpoint %}active{% endif %}">Wiki</a>
+            <a href="{{ url_for('tracker.new_action_item') }}" class="nav-btn-primary">+ Action Item</a>
+        </div>
+        <div class="nav-user">
+            <span class="user-name">{{ current_user.username }}</span>
+            <a href="{{ url_for('tracker.logout') }}" class="nav-logout">Sign Out</a>
+        </div>
+        <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">
+            {{ message }}
+            <button class="flash-close" onclick="this.parentElement.remove()">&times;</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <main class="tracker-main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/tracker.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

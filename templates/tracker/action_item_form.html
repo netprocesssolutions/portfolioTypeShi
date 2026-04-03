@@ -1,0 +1,61 @@
+{% extends "tracker/base_tracker.html" %}
+{% block title %}{% if editing %}Edit{% else %}New{% endif %} Action Item{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <a href="{{ url_for('tracker.dashboard') }}" class="back-link">&#8592; Back</a>
+    <div class="form-card glass-card">
+        <h1>{% if editing %}Edit Action Item{% else %}New Action Item{% endif %}</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label>{{ form.title.label.text }}</label>
+                {{ form.title(class="form-input", placeholder="What needs to be done?") }}
+                {% for error in form.title.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>{{ form.project_id.label.text }}</label>
+                    {{ form.project_id(class="form-select") }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.source.label.text }}</label>
+                    {{ form.source(class="form-input", placeholder="e.g., Morning Meeting, Email, Floor Walk") }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>{{ form.priority.label.text }}</label>
+                    {{ form.priority(class="form-select") }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.status.label.text }}</label>
+                    {{ form.status(class="form-select") }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.due_date.label.text }}</label>
+                    {{ form.due_date(class="form-input", type="date") }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.description.label.text }}</label>
+                {{ form.description(class="form-textarea", rows=3, placeholder="Details about this action item... Use [[Page Name]] to link wiki pages") }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.notes.label.text }}</label>
+                {{ form.notes(class="form-textarea", rows=3, placeholder="Additional notes, updates, context...") }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">{% if editing %}Update{% else %}Create{% endif %} Action Item</button>
+                <a href="{{ url_for('tracker.dashboard') }}" class="btn btn-ghost">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

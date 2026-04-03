@@ -1,0 +1,28 @@
+{% extends "tracker/base_tracker.html" %}
+{% block title %}{{ page.title if page else title }}{% endblock %}
+
+{% block content %}
+<div class="wiki-page">
+    <a href="{{ url_for('tracker.wiki_index') }}" class="back-link">&#8592; All Pages</a>
+
+    {% if page %}
+    <div class="wiki-content glass-card">
+        <div class="wiki-content-header">
+            <h1>{{ page.title }}</h1>
+            <a href="{{ url_for('tracker.edit_wiki_page', slug=page.slug) }}" class="btn btn-sm btn-ghost">Edit</a>
+        </div>
+        <div class="wiki-body">{{ page.body|wikilinks }}</div>
+        <div class="wiki-footer">
+            <span>Created by {{ page.created_by.username }} on {{ page.created_at.strftime('%b %d, %Y') }}</span>
+            <span>Last updated {{ page.updated_at.strftime('%b %d, %Y at %H:%M') }}</span>
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-state-card glass-card">
+        <h3>Page "{{ title }}" doesn't exist yet</h3>
+        <p>Would you like to create it?</p>
+        <a href="{{ url_for('tracker.new_wiki_page', title=title) }}" class="btn btn-primary">Create "{{ title }}"</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

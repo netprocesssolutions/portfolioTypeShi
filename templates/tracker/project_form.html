@@ -1,0 +1,35 @@
+{% extends "tracker/base_tracker.html" %}
+{% block title %}{% if editing %}Edit{% else %}New{% endif %} Project{% endblock %}
+
+{% block content %}
+<div class="form-page">
+    <a href="{{ url_for('tracker.dashboard') }}" class="back-link">&#8592; Back</a>
+    <div class="form-card glass-card">
+        <h1>{% if editing %}Edit Project{% else %}New Project{% endif %}</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label>{{ form.name.label.text }}</label>
+                {{ form.name(class="form-input", placeholder="e.g., Pretenter EIT") }}
+                {% for error in form.name.errors %}<span class="form-error">{{ error }}</span>{% endfor %}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.objective_id.label.text }}</label>
+                {{ form.objective_id(class="form-select") }}
+            </div>
+
+            <div class="form-group">
+                <label>{{ form.description.label.text }}</label>
+                {{ form.description(class="form-textarea", rows=3, placeholder="Project description... Use [[Page Name]] to create wiki links") }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">{% if editing %}Update{% else %}Create{% endif %} Project</button>
+                <a href="{{ url_for('tracker.dashboard') }}" class="btn btn-ghost">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
