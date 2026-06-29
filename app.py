@@ -91,7 +91,7 @@ PROFILE = {
     'email': 'me@jordantaylor.online',
     'phone': '423-400-1402',
     'summary': 'Chemical engineer (UTC, 3.79 GPA, Tau Beta Pi) working both sides of the OT/IT boundary on a continuous latex carpet-coating line — owning process and root-cause work on the floor while building the data warehouse, analytical tooling, and integration layer that turn plant data into engineering decisions. Architected a 2.1 GB analytical warehouse (2.5M+ time-series rows; an 82-column engineered feature table across 760+ runs), deployed a multi-coater trial-analysis and statistics tool, pioneered the plant\'s first Unified Namespace / Sparkplug B effort, and built an in-Ignition LLM operations advisor. FE exam scheduled.',
-    'linkedin': 'https://linkedin.com/in/jordantaylor',
+    'linkedin': 'https://www.linkedin.com/in/jordan-taylor-online/',
     'github': 'https://github.com/jordantaylor',
 }
 
