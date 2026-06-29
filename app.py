@@ -85,12 +85,12 @@ def create_app():
 
 PROFILE = {
     'name': 'Jordan Taylor',
-    'title': 'Process Engineer',
-    'tagline': 'Chemical Process Engineer | Data-Driven Problem Solver | Continuous Improvement Leader',
+    'title': 'Process & Automation Engineer',
+    'tagline': 'Manufacturing Data Systems · Industrial Automation · ML on Real Plant Data',
     'location': 'Chattanooga, TN',
     'email': 'me@jordantaylor.online',
-    'phone': '865-454-9470',
-    'summary': 'Chemical Process Engineer with hands-on manufacturing experience across automotive, plastics, and flooring industries. Passionate about leveraging data analytics, process optimization, and cross-functional collaboration to drive measurable improvements in quality, efficiency, and operational excellence.',
+    'phone': '423-400-1402',
+    'summary': 'Chemical Process Engineer building automation and machine-learning tools on real manufacturing data. Designed and built an in-Ignition LLM operations advisor (Perspective + FastAPI + PostgreSQL + hybrid retrieval), pioneered the company\'s first Unified Namespace / Sparkplug B architecture, and developed an AI-enabled root-cause-analysis workflow over a ~2 GB analytical warehouse spanning millions of time-series records. Strong in OT/IT integration — Ignition 8.1, OPC, MQTT, historian-connected analytics — and cross-functional collaboration across production, maintenance, compounding, quality, and automation. FE exam scheduled.',
     'linkedin': 'https://linkedin.com/in/jordantaylor',
     'github': 'https://github.com/jordantaylor',
 }
@@ -122,17 +122,23 @@ EDUCATION = [
 
 EXPERIENCE = [
     {
-        'company': 'Shaw Flooring',
-        'title': 'Process Engineer',
+        'company': 'Shaw Industries / Shaw Flooring',
+        'title': 'Process Engineer, Plant 04 Coating / Finishing',
         'location': 'Dalton, GA',
         'dates': 'July 2025 – Present',
         'current': True,
         'highlights': [
-            'Led continuous improvement initiatives for Coater 1, improving uptime, line speed stability, and product quality by systematically reducing delamination failures, loose-edge defects, and other quality concerns.',
-            'Pioneered SBR latex compounding pipeline optimization efforts, coordinating maintenance, operations, and compounding teams to diagnose hard-piping restrictions, valve failures, and flow-rate variability. Primary accountability for VAE to SBR latex transition.',
-            'Designed and implemented comprehensive digital analytics pipelines integrating Excel/VBA automation, MS Access relational databases, and Power BI dashboards to centralize shift-report, downtime, scrap, and defect data.',
-            'Created structured operator-training matrices and competency tracking systems for critical coating and roll-up stations across three shifts, improving skill coverage and reducing onboarding time.',
-            'Designed standardized operator engagement meetings for ergonomics, equipment usability, and process improvement ideas, ensuring frontline insights directly drive engineering actions.'
+            'Designed and built an in-Ignition LLM operations advisor — Perspective frontend, Jython plant context, FastAPI/PostgreSQL backend with hybrid retrieval, structured analytical tools (percentile, distribution comparison, nearest historical runs, drift detection), a hash-chained audit log, and an engineer-feedback correction loop. Provider-agnostic (OpenAI / Azure OpenAI / vLLM) over a 30-table schema.',
+            'Developed an AI-enabled delamination root-cause-analysis workflow: Python extraction scripts, DataArchival historian pulls, recipe/setpoint joins, and DuckDB tables with 82 engineered ML features across 760+ production runs, with run-comparison logic, deviation detection, and per-run engineering reports.',
+            'Pioneered the company\'s first Unified Namespace and Sparkplug B effort — designing the information architecture for plant-floor data integration across OT and IT systems.',
+            'Architected a PostgreSQL / TimescaleDB schema for plant time-series data — hypertables, continuous aggregates, monitored-tag ingestion, and Python/WebDev tooling for live and historical access.',
+            'Built Ignition WebDev REST endpoints (/TAGS/READ, /QUERIES/READ_QUERY) bridging live tag reads and named SQL queries from the Ignition gateway to local Python tooling over HTTP — no historian API dependency.',
+            'Built a DataArchival trial-analysis GUI (Flask / pandas / matplotlib / SciPy) deployed across Plant 4 Coater 1, Coater 2, and templated for Plant 80 — multi-tag selection, per-tag time offsets, shift filtering, a 5-model regression bench, Welch t-test, F-test, boxplots, and Excel export.',
+            'Developed a quality-email ingestion pipeline parsing ~2,000 structured Pass/Fail records into a normalized DuckDB feed; integrated SharePoint weight-check data (10,600+ records) and historian setpoint-change exports into a single analytical layer.',
+            'Built self-service tooling for adjacent teams — including an Excel-based latex inventory calculator used by accounting and a VBA-automated reporting tool — translating process and material data into cross-functional visibility.',
+            'Serve as the technical bridge between production, maintenance, compounding, quality, and OT/automation for process changes, equipment issues, data visibility, and recipe clarity.',
+            'Created operator-training matrices and engagement meetings to improve skill coverage, onboarding visibility, and shift-to-shift consistency.',
+            'Lead continuous improvement for Coater 1 — uptime, line-speed stability, delamination reduction, loose-edge defects, and chronic reliability issues.'
         ]
     },
     {
@@ -209,29 +215,30 @@ LEADERSHIP = [
 
 SKILLS = {
     'technical': [
-        {'name': 'VBA / Excel Automation', 'level': 100},
-        {'name': 'Custom Software Development', 'level': 100},
-        {'name': 'Data Analysis', 'level': 100},
-        {'name': 'Statistical Methods', 'level': 100},
-        {'name': 'Written Procedures', 'level': 95},
-        {'name': 'Python', 'level': 90},
-        {'name': 'Presentational Speaking', 'level': 85},
-        {'name': 'MS Access / SQL', 'level': 80},
-        {'name': 'CHEMCAD', 'level': 70},
-        {'name': 'C++ (Arduino)', 'level': 60},
-        {'name': 'Spanish', 'level': 60},
+        {'name': 'Python', 'level': 95},
+        {'name': 'Data Analysis & Statistics', 'level': 95},
+        {'name': 'VBA / Excel Automation', 'level': 95},
+        {'name': 'SQL / DuckDB / PostgreSQL', 'level': 90},
+        {'name': 'pandas / NumPy / SciPy', 'level': 90},
+        {'name': 'Ignition / Perspective (Jython)', 'level': 85},
+        {'name': 'FastAPI / REST APIs', 'level': 85},
+        {'name': 'Power BI', 'level': 80},
+        {'name': 'MQTT / Sparkplug B', 'level': 75},
+        {'name': 'Docker / Git', 'level': 75},
+        {'name': 'Node.js / TypeScript', 'level': 70},
     ],
     'engineering': [
-        'Process Optimization',
+        'OT/IT Integration',
+        'Manufacturing Data Systems',
         'Root Cause Analysis',
-        'Statistical Process Control',
-        'Quality Systems',
+        'Machine Learning / Feature Engineering',
+        'Process Optimization',
         'Continuous Improvement',
-        'Equipment Troubleshooting',
-        'Standard Work Documentation',
+        'SCADA / Historian Analytics',
         'Cross-Functional Leadership'
     ],
     'certifications': [
+        'FE Exam — Chemical (scheduled)',
         'AutoCAD Certification Course',
         'CRLA Level 1 Peer Educator Certification'
     ]
@@ -239,10 +246,147 @@ SKILLS = {
 
 PROJECTS = [
     {
+        'id': 'llm-advisor',
+        'title': 'In-Ignition LLM Operations Advisor',
+        'company': 'Shaw Industries',
+        'category': 'Data & AI',
+        'description': 'An operations-floor LLM assistant embedded in Ignition that answers process questions against live and historical plant data, with structured analytical tools and an engineer-feedback correction loop.',
+        'details': [
+            'Perspective frontend with Jython plant-context scripting',
+            'FastAPI / PostgreSQL backend with hybrid (vector + keyword) retrieval',
+            'Structured tools: percentile, distribution comparison, nearest historical runs, drift detection',
+            'Hash-chained audit log and engineer-feedback correction loop',
+            'Provider-agnostic (OpenAI / Azure OpenAI / vLLM); 30-table schema'
+        ],
+        'technologies': ['Python', 'FastAPI', 'PostgreSQL', 'Ignition', 'Perspective', 'Jython', 'LLM / RAG'],
+        'impact': 'Built and passing a 145/0/2 test suite; pending migration into Shaw-defined tooling for production deployment'
+    },
+    {
+        'id': 'delam-rca-warehouse',
+        'title': 'Delamination RCA Analytical Warehouse',
+        'company': 'Shaw Industries',
+        'category': 'Data & AI',
+        'description': 'An AI-assisted root-cause-analysis workflow for carpet-coating delamination failures, built on a DuckDB analytical warehouse of historian, recipe, and test data.',
+        'details': [
+            'Python extraction scripts pulling DataArchival historian data',
+            'Recipe / setpoint joins and per-run deviation detection',
+            '82 engineered ML features across 760+ production runs',
+            'Run-comparison logic and automated per-run engineering reports',
+            'Persistent correction rules captured from engineer review'
+        ],
+        'technologies': ['Python', 'DuckDB', 'pandas', 'SciPy', 'Historian', 'ML Feature Engineering'],
+        'impact': '~2 GB warehouse spanning millions of time-series records; reproducible RCA in minutes'
+    },
+    {
+        'id': 'trial-analysis-gui',
+        'title': 'DataArchival Trial-Analysis GUI',
+        'company': 'Shaw Industries',
+        'category': 'Data & AI',
+        'description': 'A desktop GUI for ad-hoc historian trial analysis, deployed across multiple coaters and templated for a second plant.',
+        'details': [
+            'Multi-tag selection with per-tag time offsets and shift filtering',
+            '5-model regression bench with Welch t-test and F-test',
+            'Boxplots and distribution comparisons with Excel export',
+            'Deployed on Plant 4 Coater 1 and Coater 2; templated for Plant 80'
+        ],
+        'technologies': ['Python', 'Flask', 'pandas', 'matplotlib', 'SciPy'],
+        'impact': 'Self-service trial analysis for engineers without writing code'
+    },
+    {
+        'id': 'virtual-encoder',
+        'title': 'Virtual Encoder for Coater 1',
+        'company': 'Shaw Industries',
+        'category': 'Automation & Controls',
+        'description': 'A first-principles kinematic model that tracks tagged carpet cross-sections through the line to associate downstream defects with originating upstream coating conditions.',
+        'details': [
+            'Models flow Main Tenter -> Accum 1 -> Shear -> Accum 2 -> Roll-Up',
+            'Composable Python topology with a pluggable tag-source',
+            'Designed for live Ignition tag reads',
+            'Links downstream defect events back to upstream process state'
+        ],
+        'technologies': ['Python', 'Kinematic Modeling', 'Ignition (planned)'],
+        'impact': 'Design / model — foundation for defect-to-condition traceability'
+    },
+    {
+        'id': 'uns-sparkplug',
+        'title': 'Unified Namespace / Sparkplug B Architecture',
+        'company': 'Shaw Industries',
+        'category': 'Automation & Controls',
+        'description': "The plant's first Unified Namespace and Sparkplug B effort, designing the information architecture for plant-floor data integration across OT and IT systems.",
+        'details': [
+            'Unified Namespace topology for plant-floor data',
+            'MQTT / Sparkplug B payload and naming conventions',
+            'OT/IT integration across historian, gateway, and analytics layers',
+            'Foundation for event-driven plant data flow'
+        ],
+        'technologies': ['MQTT', 'Sparkplug B', 'Unified Namespace', 'Ignition', 'OT/IT'],
+        'impact': 'First UNS / Sparkplug B initiative at the plant'
+    },
+    {
+        'id': 'timescaledb-schema',
+        'title': 'TimescaleDB Plant Time-Series Schema',
+        'company': 'Shaw Industries',
+        'category': 'Data & AI',
+        'description': 'A PostgreSQL / TimescaleDB schema for plant time-series data with tooling for live and historical access.',
+        'details': [
+            'Hypertables and continuous aggregates for time-series',
+            'Monitored-tag ingestion pipeline',
+            'Python / WebDev tooling for live and historical queries',
+            'Designed for scalable historian-style storage'
+        ],
+        'technologies': ['PostgreSQL', 'TimescaleDB', 'Python', 'SQL'],
+        'impact': 'Scalable time-series backbone for plant analytics'
+    },
+    {
+        'id': 'webdev-bridge',
+        'title': 'Ignition WebDev REST Bridge',
+        'company': 'Shaw Industries',
+        'category': 'Automation & Controls',
+        'description': 'REST endpoints that bridge live Ignition tag reads and named SQL queries from the gateway to local Python tooling over HTTP, with no historian API dependency.',
+        'details': [
+            'Endpoints: /TAGS/READ and /QUERIES/READ_QUERY',
+            'Live tag reads exposed over HTTP',
+            'Named SQL queries served from the Ignition gateway',
+            'Decouples local Python tooling from historian APIs'
+        ],
+        'technologies': ['Ignition', 'WebDev', 'Jython', 'REST', 'Python', 'SQL'],
+        'impact': 'Direct, dependency-light access to live and queried plant data'
+    },
+    {
+        'id': 'tenter-downtime',
+        'title': 'Tenter Downtime Analysis',
+        'company': 'Shaw Industries',
+        'category': 'Continuous Improvement',
+        'description': 'An analysis of Main Tenter downtime events to quantify availability loss and rank the largest recurring downtime drivers.',
+        'details': [
+            'Consolidated downtime records into a single analytical feed',
+            'Categorized downtime causes and built Pareto rankings',
+            'Quantified availability loss by cause and shift',
+            'Surfaced the highest-impact reliability targets'
+        ],
+        'technologies': ['Python', 'pandas', 'DuckDB', 'Power BI', 'Excel / VBA'],
+        'impact': 'Prioritized reliability work by quantified downtime impact'
+    },
+    {
+        'id': 'shift-report-app',
+        'title': 'Coating Shift Report / Operations Data App',
+        'company': 'Shaw Industries',
+        'category': 'Software Development',
+        'description': 'An evolution of Excel / VBA shift-report extraction into a web-based operations data application across coating and compounding.',
+        'details': [
+            'Migrated VBA shift-report extraction to a web stack',
+            'Node.js / Express / TypeScript services with PostgreSQL',
+            'Power BI reporting concept across coating and compounding',
+            'Centralized shift-level operations data'
+        ],
+        'technologies': ['Node.js', 'TypeScript', 'Express', 'PostgreSQL', 'Power BI', 'VBA'],
+        'impact': 'Shift-report data centralized and made reportable'
+    },
+    {
         'id': 'analytics-pipeline',
         'title': 'Digital Analytics Pipeline',
         'company': 'Shaw Flooring',
-        'category': 'Data Engineering',
+        'category': 'Data & AI',
         'description': 'Designed and implemented a comprehensive digital analytics system integrating multiple data sources into actionable insights for operations leadership.',
         'details': [
             'Built Excel/VBA automation tools to streamline data collection from shift reports',
@@ -306,7 +450,7 @@ PROJECTS = [
         'id': 'training-matrix',
         'title': 'Operator Training & Competency System',
         'company': 'Shaw Flooring',
-        'category': 'Process Improvement',
+        'category': 'Continuous Improvement',
         'description': 'Developed structured training matrices and competency tracking systems for critical production stations.',
         'details': [
             'Mapped skill requirements for coating and roll-up stations',
@@ -317,22 +461,6 @@ PROJECTS = [
         ],
         'technologies': ['Training Design', 'Process Documentation', 'Standard Work', 'Change Management'],
         'impact': 'Reduced onboarding time and improved consistency across three production shifts'
-    },
-    {
-        'id': 'netprocess-solutions',
-        'title': 'NetProcess Solutions Website',
-        'company': 'Personal Business',
-        'category': 'Web Development',
-        'description': 'Built a professional business website for NetProcess Solutions, a software and process consulting company.',
-        'details': [
-            'Developed full-stack Flask web application with responsive design',
-            'Created Apple-inspired UI with custom CSS animations',
-            'Implemented contact form integration with email services',
-            'Deployed on Railway with custom domain configuration',
-            'Built testimonials, demos, and service showcase pages'
-        ],
-        'technologies': ['Python', 'Flask', 'HTML/CSS', 'JavaScript', 'Railway', 'Git'],
-        'impact': 'Live production website at www.netprotech.dev'
     }
 ]
 
