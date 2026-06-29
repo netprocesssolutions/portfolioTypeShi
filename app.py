@@ -86,11 +86,11 @@ def create_app():
 PROFILE = {
     'name': 'Jordan Taylor',
     'title': 'Process & Automation Engineer',
-    'tagline': 'Manufacturing Data Systems · Industrial Automation · ML on Real Plant Data',
+    'tagline': 'Data Modeling & ML · OT/IT Integration',
     'location': 'Chattanooga, TN',
     'email': 'me@jordantaylor.online',
     'phone': '423-400-1402',
-    'summary': 'Chemical Process Engineer building automation and machine-learning tools on real manufacturing data. Designed and built an in-Ignition LLM operations advisor (Perspective + FastAPI + PostgreSQL + hybrid retrieval), pioneered the company\'s first Unified Namespace / Sparkplug B architecture, and developed an AI-enabled root-cause-analysis workflow over a ~2 GB analytical warehouse spanning millions of time-series records. Strong in OT/IT integration — Ignition 8.1, OPC, MQTT, historian-connected analytics — and cross-functional collaboration across production, maintenance, compounding, quality, and automation. FE exam scheduled.',
+    'summary': 'Chemical engineer (UTC, 3.79 GPA, Tau Beta Pi) working both sides of the OT/IT boundary on a continuous latex carpet-coating line — owning process and root-cause work on the floor while building the data warehouse, analytical tooling, and integration layer that turn plant data into engineering decisions. Architected a 2.1 GB analytical warehouse (2.5M+ time-series rows; an 82-column engineered feature table across 760+ runs), deployed a multi-coater trial-analysis and statistics tool, pioneered the plant\'s first Unified Namespace / Sparkplug B effort, and built an in-Ignition LLM operations advisor. FE exam scheduled.',
     'linkedin': 'https://linkedin.com/in/jordantaylor',
     'github': 'https://github.com/jordantaylor',
 }
@@ -117,6 +117,18 @@ EDUCATION = [
             'Organic Chemistry',
             'Materials Science'
         ]
+    },
+    {
+        'institution': 'Purdue University (Online)',
+        'location': 'Online',
+        'degree': 'M.S. Electrical & Computer Engineering — Automatic Control + AI/ML',
+        'graduation': 'Planned 2028 · In Progress',
+        'gpa': '',
+        'major_gpa': '',
+        'honors': [
+            'FE Exam scheduled'
+        ],
+        'coursework': []
     }
 ]
 
@@ -128,17 +140,17 @@ EXPERIENCE = [
         'dates': 'July 2025 – Present',
         'current': True,
         'highlights': [
-            'Designed and built an in-Ignition LLM operations advisor — Perspective frontend, Jython plant context, FastAPI/PostgreSQL backend with hybrid retrieval, structured analytical tools (percentile, distribution comparison, nearest historical runs, drift detection), a hash-chained audit log, and an engineer-feedback correction loop. Provider-agnostic (OpenAI / Azure OpenAI / vLLM) over a 30-table schema.',
-            'Developed an AI-enabled delamination root-cause-analysis workflow: Python extraction scripts, DataArchival historian pulls, recipe/setpoint joins, and DuckDB tables with 82 engineered ML features across 760+ production runs, with run-comparison logic, deviation detection, and per-run engineering reports.',
-            'Pioneered the company\'s first Unified Namespace and Sparkplug B effort — designing the information architecture for plant-floor data integration across OT and IT systems.',
-            'Architected a PostgreSQL / TimescaleDB schema for plant time-series data — hypertables, continuous aggregates, monitored-tag ingestion, and Python/WebDev tooling for live and historical access.',
-            'Built Ignition WebDev REST endpoints (/TAGS/READ, /QUERIES/READ_QUERY) bridging live tag reads and named SQL queries from the Ignition gateway to local Python tooling over HTTP — no historian API dependency.',
-            'Built a DataArchival trial-analysis GUI (Flask / pandas / matplotlib / SciPy) deployed across Plant 4 Coater 1, Coater 2, and templated for Plant 80 — multi-tag selection, per-tag time offsets, shift filtering, a 5-model regression bench, Welch t-test, F-test, boxplots, and Excel export.',
-            'Developed a quality-email ingestion pipeline parsing ~2,000 structured Pass/Fail records into a normalized DuckDB feed; integrated SharePoint weight-check data (10,600+ records) and historian setpoint-change exports into a single analytical layer.',
-            'Built self-service tooling for adjacent teams — including an Excel-based latex inventory calculator used by accounting and a VBA-automated reporting tool — translating process and material data into cross-functional visibility.',
-            'Serve as the technical bridge between production, maintenance, compounding, quality, and OT/automation for process changes, equipment issues, data visibility, and recipe clarity.',
-            'Created operator-training matrices and engagement meetings to improve skill coverage, onboarding visibility, and shift-to-shift consistency.',
-            'Lead continuous improvement for Coater 1 — uptime, line-speed stability, delamination reduction, loose-edge defects, and chronic reliability issues.'
+            'Lead continuous-improvement and process engineering on Coater 1 — uptime, line-speed stability, and delamination / loose-edge reduction — owning puddle-height control across the precoat (Direct Applicator) and adhesive (Tillitson) systems, with defects traced back to upstream yarn and tufting characteristics.',
+            'Drove SBR-latex compounding optimization through the VAE→SBR transition — investigating hard-piping restrictions, valve failures, and flow variability and their downstream coating effects; developed pretenter / maintenter edge-control and pin / brush concepts.',
+            'Architected a 2.1 GB DuckDB analytical warehouse — per-run process tags (~2.5M rows), deviation records (~3.15M rows), actual-vs-setpoint comparisons, run statistics, and recipe setpoints across 240 styles — as the single analytical layer for delamination root-cause work.',
+            'Built the extraction and feature pipeline for a delamination prediction engine — an 82-column engineered feature table across 760+ runs with multi-source ingestion (DataArchival historian, ~2,000 quality-email Pass/Fail records, 10,600+ SharePoint weight checks, recipe databases). The pipeline is production-ready; model training / inference is pending Databricks / GPU compute, in progress with corporate IT.',
+            'Built and deployed a DataArchival trial-analysis GUI (Flask / pandas / SciPy) across Coater 1, Coater 2, and templated for Plant 80 — multi-tag selection with per-tag time offsets, a 5-model regression bench (R²), Welch t-test and F-test, boxplots, and Excel export — backed by a selection-bias-aware discipline that draws baselines from independent datasets.',
+            'Built Ignition WebDev REST endpoints (/TAGS/READ, /QUERIES/READ_QUERY) bridging live tag reads and named SQL queries from the Ignition gateway to local Python tooling over HTTP — removing the historian-API dependency.',
+            'Pioneered the company\'s first Unified Namespace and Sparkplug B effort — designing the plant-floor information architecture for data integration across OT and IT systems.',
+            'Designed and built an in-Ignition LLM operations advisor — Perspective front end, Jython plant context, FastAPI / PostgreSQL back end with hybrid (vector + BM25) retrieval, structured analytical tools (percentile, distribution comparison, nearest-run, drift detection), a hash-chained audit log, and an engineer-feedback correction loop; provider-agnostic (OpenAI / Azure OpenAI / vLLM), 30-table schema, 145/0/2 tests. In personal use as a daily analytical aid; not yet generally deployed.',
+            'Conducted a statistical analysis of 96 tenter downtime events (4,378 total minutes); isolated 41.9% to the tenter system and identified a directional walk-off bias at p ≈ 0.016, informing a capital-allocation recommendation.',
+            'Created operator-training matrices and engagement meetings to lift skill coverage, onboarding, and shift-to-shift consistency; serve as the technical bridge across production, maintenance, compounding, quality, and OT / automation.',
+            'Built self-service tooling for adjacent teams — an Excel-based latex inventory calculator used by accounting and a VBA-automated reporting tool — translating process and material data into cost-side visibility without engineering intervention.'
         ]
     },
     {
@@ -148,10 +160,8 @@ EXPERIENCE = [
         'dates': 'July 2024 – July 2025',
         'current': False,
         'highlights': [
-            'Primary point of accountability for all material, process, and quality-related issues in a fast-paced EPP manufacturing environment involving daily troubleshooting related to quality specifications, part appearances, and equipment maintenance.',
-            'Directly responsible for continuous improvement efforts for high-fallout part numbers involving changes to tool design, setup instructions, process parameters, and equipment health analysis.',
-            'Led a special task force across three production shifts to increase overall equipment efficiency, forming specialized units to target cycle time and availability challenges.',
-            'Used CAD software (Teamcenter Visualization) for tooling layout and launch qualification standards including mould cavity placement and initial capability studies.'
+            'Owned material, process, and quality on EPP / EPS / PSPE formed plastics (Tuebert molding presses) — continuous improvement on high-fallout part numbers via tool design, setpoint tuning, sampling, and launch / qualification with capability studies.',
+            'Led a cross-functional OEE task force across three shifts — organizing sub-teams around cycle time, availability, maintenance response, and standardization; built Excel / VBA tools for setup extraction and work-order matching.'
         ]
     },
     {
@@ -161,9 +171,8 @@ EXPERIENCE = [
         'dates': 'January 2024 – July 2024',
         'current': False,
         'highlights': [
-            'Worked with cross-functional teams to solve production issues identified through in-house audits and warranty field claims, escalating issues to appropriate forums for speedy resolution.',
-            'Created and maintained an intradepartmental database to quantitatively track cross-functional team topics, progress updates, and auto-format meeting minutes.',
-            'Assisted a special task force analyzing large-volume field failures, developing solutions and countermeasures, and tracking issues through communication with internal and external stakeholders.'
+            'Supported a special task force on large-volume field failures in a FAP-style escalation environment — countermeasure development, action tracking, and cross-department communication.',
+            'Built and maintained an intradepartmental tracking database with auto-formatted meeting minutes for cross-functional topics, ownership, and progress.'
         ]
     },
     {
@@ -216,31 +225,31 @@ LEADERSHIP = [
 SKILLS = {
     'technical': [
         {'name': 'Python', 'level': 95},
+        {'name': 'SQL / DuckDB / PostgreSQL / TimescaleDB', 'level': 90},
         {'name': 'Data Analysis & Statistics', 'level': 95},
-        {'name': 'VBA / Excel Automation', 'level': 95},
-        {'name': 'SQL / DuckDB / PostgreSQL', 'level': 90},
         {'name': 'pandas / NumPy / SciPy', 'level': 90},
         {'name': 'Ignition / Perspective (Jython)', 'level': 85},
         {'name': 'FastAPI / REST APIs', 'level': 85},
+        {'name': 'MQTT / Sparkplug B / OPC', 'level': 75},
+        {'name': 'VBA / Excel Automation', 'level': 95},
         {'name': 'Power BI', 'level': 80},
-        {'name': 'MQTT / Sparkplug B', 'level': 75},
+        {'name': 'TypeScript / Node.js / Express', 'level': 70},
         {'name': 'Docker / Git', 'level': 75},
-        {'name': 'Node.js / TypeScript', 'level': 70},
+        {'name': 'Databricks / Azure AI Foundry (growing)', 'level': 55},
     ],
     'engineering': [
-        'OT/IT Integration',
-        'Manufacturing Data Systems',
-        'Root Cause Analysis',
-        'Machine Learning / Feature Engineering',
-        'Process Optimization',
-        'Continuous Improvement',
-        'SCADA / Historian Analytics',
-        'Cross-Functional Leadership'
+        'Process Development & Scale-Up',
+        'Middleware & Systems Integration',
+        'OT/IT Connectivity & Pipelines',
+        'Data Analysis & Mathematical Modeling',
+        'DOE, Trials & Statistical Risk',
+        'Peer Education, Teaching & Public Speaking'
     ],
     'certifications': [
         'FE Exam — Chemical (scheduled)',
         'AutoCAD Certification Course',
-        'CRLA Level 1 Peer Educator Certification'
+        'CRLA Level 1 Peer Educator',
+        'AIChE Southern Regional Conference 2023'
     ]
 }
 

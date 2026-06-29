@@ -192,7 +192,7 @@
             <div class="education-content">
                 <h3>{{ edu.degree }}</h3>
                 <p class="institution">{{ edu.institution }}</p>
-                <p class="graduation">{{ edu.graduation }} | GPA: {{ edu.gpa }}</p>
+                <p class="graduation">{{ edu.graduation }}{% if edu.gpa %} | GPA: {{ edu.gpa }}{% endif %}</p>
                 <div class="education-honors">
                     {% for honor in edu.honors %}
                     <span class="honor-badge">{{ honor }}</span>

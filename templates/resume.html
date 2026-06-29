@@ -141,7 +141,7 @@
                         <h4>{{ edu.degree }}</h4>
                         <p class="institution">{{ edu.institution }}</p>
                         <p class="grad-date">{{ edu.graduation }}</p>
-                        <p class="gpa">GPA: {{ edu.gpa }}</p>
+                        {% if edu.gpa %}<p class="gpa">GPA: {{ edu.gpa }}</p>{% endif %}
                         <div class="honors-list">
                             {% for honor in edu.honors %}
                             <span class="honor">{{ honor }}</span>
