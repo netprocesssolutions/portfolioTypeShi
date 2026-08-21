@@ -1,0 +1,9 @@
+Package: com.cf.carkitinstrument
+Name: CarKit Instrument
+Version: 0.1.0
+Architecture: iphoneos-arm64
+Description: Diagnostic instrumentation for CarKit / CarPlay / FrontBoard session and display objects. Logs object graphs during a genuine CarPlay connection so the session-replay path can be mapped. Observe-only: it does not alter behaviour or touch authentication.
+Maintainer: chasefloied101 <chasefloied101@gmail.com>
+Author: chasefloied101 <chasefloied101@gmail.com>
+Section: Tweaks
+Depends: mobilesubstrate, firmware (>= 15.0)
